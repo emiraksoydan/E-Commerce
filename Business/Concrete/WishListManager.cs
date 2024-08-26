@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Business.Concrete
 {
-    internal class WishListManager : IWishListService
+    public class WishListManager : IWishListService
     {
         IWishList _wishList;
 

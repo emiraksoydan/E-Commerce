@@ -9,7 +9,10 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete
 {
-    public class AddressDal : EfEntityRepository<Address,DbConnection>
+    public class AddressDal : EfEntityRepository<Address,DbConnection>,IAdressDal
     {
+        public AddressDal(DbConnection context) : base(context)
+        {
+        }
     }
 }

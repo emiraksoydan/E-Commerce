@@ -12,6 +12,9 @@ namespace DataAccess.Concrete
 {
     public class WishListDal : EfEntityRepository<WishList, DbConnection>, IWishList
     {
+        public WishListDal(DbConnection context) : base(context)
+        {
+        }
         public ICollection<WishListDto> GetAllWishListDto()
         {
             throw new NotImplementedException();

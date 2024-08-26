@@ -9,7 +9,10 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete
 {
-    public class ProductDal : EfEntityRepository<Product,DbConnection>
+    public class ProductDal : EfEntityRepository<Product,DbConnection>,IProductDal
     {
+        public ProductDal(DbConnection context) : base(context)
+        {
+        }
     }
 }

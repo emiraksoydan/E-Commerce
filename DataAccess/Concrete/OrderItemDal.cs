@@ -1,4 +1,5 @@
 ﻿using Core.EfCore;
+using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,10 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete
 {
-    public class OrderItemDal : EfEntityRepository<Order,DbConnection>
+    public class OrderItemDal : EfEntityRepository<OrderItem, DbConnection>,IOrderItemDal
     {
+        public OrderItemDal(DbConnection context) : base(context)
+        {
+        }
     }
 }

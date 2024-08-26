@@ -1,7 +1,11 @@
 ﻿using Business.Abstract;
 using Business.Results;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
+using Core.CrossCuttingConcerns;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,18 +22,17 @@ namespace Business.Concrete
             _productDal = productDal;
         }
 
+        [ValidationAspect(typeof(ProductValidation))]
         public IResult AddProduct(Product product)
-        {
+        {  
             _productDal.Add(product);
             return new SuccessResult();
-
         }
 
         public IResult DeleteProduct(Product product)
         {
             _productDal.Delete(product);
             return new SuccessResult();
-
 
         }
 

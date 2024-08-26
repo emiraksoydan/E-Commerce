@@ -10,9 +10,23 @@ namespace DataAccess.Concrete
 {
     public class DbConnection : DbContext
     {
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+
+        public DbConnection(DbContextOptions<DbConnection> options) : base(options) {}
+
+
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB; Database=EticaretDB;Trusted_Connection=true;");
+        //}
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            optionsBuilder.UseSqlServer("");
+            modelBuilder.Entity<Product>()
+            .HasOne<Categories>() // Product'ın Category'e sahip olduğunu belirtir
+            .WithMany()         // Category'nin birden fazla Product'a sahip olabileceğini belirtir
+            .HasForeignKey(p => p.CategoryId);
+         
+            base.OnModelCreating(modelBuilder);
         }
 
         public DbSet<Product> Products { get; set; }
