@@ -17,7 +17,7 @@ namespace Core.EfCore
         }
         public void Add(TEntity entity)
         {
-           
+                
                 var addeditem = _context.Entry(entity);
                 addeditem.State = EntityState.Added;
                 _context.SaveChanges();

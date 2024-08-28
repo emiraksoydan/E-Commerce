@@ -18,7 +18,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("addcategory")]
-        public IActionResult Add(Categories categories)
+        public IActionResult Add(Category categories)
         {
             var result = _categoryService.AddCategory(categories);
 
@@ -29,7 +29,7 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
         [HttpPost("updatecategory")]
-        public IActionResult Update(Categories categories)
+        public IActionResult Update(Category categories)
         {
             var result = _categoryService.UpdateCategory(categories);
 
@@ -40,7 +40,7 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
         [HttpPost("deletecategory")]
-        public IActionResult Delete(Categories categories)
+        public IActionResult Delete(Category categories)
         {
             var result = _categoryService.DeleteCategory(categories);
 
@@ -51,7 +51,7 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
         [HttpGet("getallcategory")]
-        public IActionResult GetAll(Categories categories)
+        public IActionResult GetAll()
         {
             var result = _categoryService.GetAllCategory();
 

@@ -22,10 +22,11 @@ namespace DataAccess.Concrete
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Product>()
-            .HasOne<Categories>() // Product'ın Category'e sahip olduğunu belirtir
-            .WithMany()         // Category'nin birden fazla Product'a sahip olabileceğini belirtir
+            .HasOne(c => c.Category) // Product'ın Category'e sahip olduğunu belirtir
+            .WithMany(p => p.Products)         // Category'nin birden fazla Product'a sahip olabileceğini belirtir
             .HasForeignKey(p => p.CategoryId);
-         
+
+            
             base.OnModelCreating(modelBuilder);
         }
 
@@ -40,7 +41,7 @@ namespace DataAccess.Concrete
         public DbSet<ProductAttributes> ProductAttributes { get; set; }
 
         public DbSet<Stock> Stocks { get; set; }
-        public DbSet<Categories> Categories { get; set; }   
+        public DbSet<Category> Categories { get; set; }   
 
 
 

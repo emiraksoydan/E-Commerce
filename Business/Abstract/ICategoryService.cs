@@ -10,11 +10,11 @@ namespace Business.Abstract
 {
     public interface ICategoryService
     {
-        IResult AddCategory(Categories category);
-        IResult UpdateCategory(Categories category);
-        IResult DeleteCategory(Categories category);
+        IResult AddCategory(Category category);
+        IResult UpdateCategory(Category category);
+        IResult DeleteCategory(Category category);
 
-        IDataResult<ICollection<Categories>> GetAllCategory();
-        IDataResult<Categories> GetCategory(Guid id);
+        IDataResult<ICollection<Category>> GetAllCategory();
+        IDataResult<Category> GetCategory(Guid id);
     }
 }

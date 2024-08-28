@@ -1,7 +1,9 @@
 ﻿using Business.Abstract;
+using Business.Constants;
 using Business.Results;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
+using Core.Business;
 using Core.CrossCuttingConcerns;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -24,7 +26,11 @@ namespace Business.Concrete
 
         [ValidationAspect(typeof(ProductValidation))]
         public IResult AddProduct(Product product)
-        {  
+        {
+            IResult result = BusinessClass.ControlResult(CheckAddProductSameName(product));
+            if (result != null) {
+               return result;
+            }
             _productDal.Add(product);
             return new SuccessResult();
         }
@@ -35,6 +41,17 @@ namespace Business.Concrete
             return new SuccessResult();
 
         }
+
+        public IResult CheckAddProductSameName(Product product) {
+
+            var productcontrolname = _productDal.GetAll(pr => pr.Name == product.Name).Any();
+            if (productcontrolname == false ) {
+                return new SuccessResult();
+            }
+            return new ErrorResult(Messages.sameNameProduct);
+        }
+
+   
 
         public IDataResult<ICollection<Product>> GetAllProducts()
         {

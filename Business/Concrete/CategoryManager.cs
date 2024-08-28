@@ -19,13 +19,13 @@ namespace Business.Concrete
             _categoryDal = categoryDal;
         }
 
-        public IResult AddCategory(Categories category)
+        public IResult AddCategory(Category category)
         {
             _categoryDal.Add(category);
             return new SuccessResult();
         }
 
-        public IResult DeleteCategory(Categories category)
+        public IResult DeleteCategory(Category category)
         {
             _categoryDal.Delete(category);
             return new SuccessResult();
@@ -33,18 +33,18 @@ namespace Business.Concrete
 
         }
 
-        public IDataResult<ICollection<Categories>> GetAllCategory()
+        public IDataResult<ICollection<Category>> GetAllCategory()
         {
-            return new SuccessDataResult<ICollection<Categories>>(_categoryDal.GetAll());
+            return new SuccessDataResult<ICollection<Category>>(_categoryDal.GetAll());
 
         }
 
-        public IDataResult<Categories> GetCategory(Guid id)
+        public IDataResult<Category> GetCategory(Guid id)
         {
-            return new SuccessDataResult<Categories>(_categoryDal.Get(ctg => ctg.Id == id));
+            return new SuccessDataResult<Category>(_categoryDal.Get(ctg => ctg.Id == id));
         }
 
-        public IResult UpdateCategory(Categories category)
+        public IResult UpdateCategory(Category category)
         {
             _categoryDal.Update(category);
             return new SuccessResult();

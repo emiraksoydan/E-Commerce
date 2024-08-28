@@ -14,5 +14,8 @@ namespace Entities.Concrete
         public int Quantity { get; set; }
         public DateTime LastUpdated { get; set; }
 
+        public Product Product { get; set; }
+        
+
     }
 }

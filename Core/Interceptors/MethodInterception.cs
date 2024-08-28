@@ -14,6 +14,7 @@ namespace Core.Interceptors
         protected virtual void OnSuccess(IInvocation invocation) { }
         protected virtual void OnException(IInvocation invocation,Exception  e) { }
 
+
         public override void Intercept(IInvocation invocation)
         {
             var isSuccess = true;

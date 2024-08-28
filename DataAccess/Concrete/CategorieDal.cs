@@ -10,11 +10,10 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete
 {
-    public class CategorieDal : EfEntityRepository<Categories,DbConnection>, ICategoryDal
+    public class CategorieDal : EfEntityRepository<Category,DbConnection>, ICategoryDal
     {
         public CategorieDal(DbConnection context) : base(context)
         {
-            Console.WriteLine("buradayım iilk");
         }
     }
 }

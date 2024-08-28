@@ -7,19 +7,19 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductController : ControllerBase
+    public class OrderController : ControllerBase
     {
-        IProductService _productService;
+        IOrderService _orderService;
 
-        public ProductController(IProductService productService)
+        public OrderController(IOrderService orderService)
         {
-            _productService = productService;
+            _orderService = orderService;
         }
 
-        [HttpPost("add")]
-        public IActionResult Add(Product product)
+        [HttpPost("addorder")]
+        public IActionResult AddOrder(Order order)
         {
-            var result = _productService.AddProduct(product);
+            var result = _orderService.AddOrder(order);
 
             if (result.Success)
             {
@@ -27,10 +27,10 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
-        [HttpPost("update")]
-        public IActionResult Update(Product product)
+        [HttpPost("updateorder")]
+        public IActionResult UpdateOrder(Order order)
         {
-            var result = _productService.UpdateProduct(product);
+            var result = _orderService.UpdateOrder(order);
 
             if (result.Success)
             {
@@ -39,10 +39,10 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpPost("delete")]
-        public IActionResult Delete(Product product)
+        [HttpPost("deleteorder")]
+        public IActionResult DeleteOrder(Order order)
         {
-            var result = _productService.DeleteProduct(product);
+            var result = _orderService.DeleteOrder(order);
 
             if (result.Success)
             {
@@ -50,26 +50,28 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
-        [HttpGet("getall")]
-        public IActionResult GetAllProduct() {
-
-            var result = _productService.GetAllProducts();
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
-        }
-        [HttpGet("getproductbyid")]
-        public IActionResult GetProduct(Guid id)
+        [HttpGet("getallorder")]
+        public IActionResult GetAllOrder()
         {
 
-            var result = _productService.GetProduct(id);
+            var result = _orderService.GetAllOrder();
             if (result.Success)
             {
                 return Ok(result);
             }
             return BadRequest(result);
         }
+        [HttpGet("getorderbyid")]
+        public IActionResult GetOrderByID(Guid id)
+        {
+
+            var result = _orderService.GetOrder(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
     }
 }

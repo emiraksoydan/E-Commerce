@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(DbConnection))]
-    [Migration("20240823150547_AddDbMigrations2")]
-    partial class AddDbMigrations2
+    [Migration("20240828161042_migration1")]
+    partial class migration1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -102,7 +102,7 @@ namespace DataAccess.Migrations
                     b.ToTable("CartItems");
                 });
 
-            modelBuilder.Entity("Entities.Concrete.Categories", b =>
+            modelBuilder.Entity("Entities.Concrete.Category", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -267,11 +267,18 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("Entities.Concrete.Product", b =>
                 {
-                    b.HasOne("Entities.Concrete.Categories", null)
-                        .WithMany()
+                    b.HasOne("Entities.Concrete.Category", "Category")
+                        .WithMany("Products")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("Entities.Concrete.Category", b =>
+                {
+                    b.Navigation("Products");
                 });
 #pragma warning restore 612, 618
         }
